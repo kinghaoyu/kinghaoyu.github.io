@@ -9,13 +9,14 @@
   <title>Java编程思想 第一章 对象导论 | Whyer的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="​    &amp;nbsp;&amp;nbsp;&amp;nbsp;我们之所以将自然界分解，组织成各种概念，并按其含义分类，主要是因为我们是整个口语交流社会共同遵守的协定的参与者，这个协定以语言的形式固定下来……除非赞成这个协定中规定的有关语言信息的组织和分类，否则我们根本无法交谈。 ​                                                ——Benjamin Lee Whor">
+<meta name="keywords" content="开发者,程序员,编程,代码,java,IT网站">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java编程思想 第一章 对象导论">
 <meta property="og:url" content="http://yoursite.com/2018/10/15/Java编程思想-第一章-对象导论/index.html">
 <meta property="og:site_name" content="Whyer的博客">
 <meta property="og:description" content="​    &amp;nbsp;&amp;nbsp;&amp;nbsp;我们之所以将自然界分解，组织成各种概念，并按其含义分类，主要是因为我们是整个口语交流社会共同遵守的协定的参与者，这个协定以语言的形式固定下来……除非赞成这个协定中规定的有关语言信息的组织和分类，否则我们根本无法交谈。 ​                                                ——Benjamin Lee Whor">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-16T12:56:35.643Z">
+<meta property="og:updated_time" content="2018-10-16T13:44:53.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java编程思想 第一章 对象导论">
 <meta name="twitter:description" content="​    &amp;nbsp;&amp;nbsp;&amp;nbsp;我们之所以将自然界分解，组织成各种概念，并按其含义分类，主要是因为我们是整个口语交流社会共同遵守的协定的参与者，这个协定以语言的形式固定下来……除非赞成这个协定中规定的有关语言信息的组织和分类，否则我们根本无法交谈。 ​                                                ——Benjamin Lee Whor">
@@ -50,7 +51,7 @@
 			<img src="/blogImages/iconq.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/"></a></h1>
+		  <h1 class="header-author"><a href="/">Whyer</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">我干了什么 究竟拿了时间换了什么</p>
@@ -110,7 +111,7 @@
 				<img src="/blogImages/iconq.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author"></h1>
+			  <h1 class="header-author js-header-author">Whyer</h1>
 			</hgroup>
 			
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>我干了什么 究竟拿了时间换了什么<i class="icon icon-quo-right"></i></p>
@@ -182,7 +183,7 @@
 <p>​                                                <strong>——Benjamin Lee Whorf(1897~1941)</strong></p>
 <h2 id="1-抽象过程"><a href="#1-抽象过程" class="headerlink" title="1.抽象过程"></a>1.抽象过程</h2><p>​    &nbsp;&nbsp;&nbsp;所有编程语言都提供了抽象的机制。可以这么认为，<strong>我们所能够解决问题的复杂性直接取决于抽象的 <em>类型</em> 和 <em>质量</em> </strong>。<em>类型</em> 是指 <em>所抽象的是什么</em>。例如，汇编语言是对底层机器的轻微抽象。接着又出现了许多“命令式”  语言 （如 FORTRAN, BASIC, C 等）都是对汇编语言的抽象。这些语言再汇编语言基础上有了大幅改进，但是它们所作的主要抽象仍要求<strong>在解决问题时要基于计算机的结构，而不是基于所要解决的问题的结构来考虑</strong>。程序员必须建立起在机器模型 和 实际待解决问题的模型之间的关联。建立这种映射是费力的，而且不属于编程语言所固有的功能，这使得程序难以编写，并且维护代价高昂。</p>
 <p>​    &nbsp;&nbsp;&nbsp;&nbsp;面向对象方式通过向程序员提供表示问题空间中的元素的工具而更近了一步。这种表示方式非常通用，使得程序员不会受限于如何特定类型的问题。我们将问题空间中的元素及其在解空间中的表示称为 “对象”。这种思想的实质是：<strong>程序可以通过添加新类型的对象使自身适应于某个特定问题。</strong></p>
-<p>​    &nbsp;&nbsp;&nbsp;&nbsp;<strong>OOP 允许根据问题来描述问题，而不是根据运行解决方案的计算机来描述问题。</strong>但它仍然与计算机有联系：<strong>每个对象看起来都有点像一台微型计算机（它们具有状态，还具有操作，用户可以要求对象执行这些操作。）</strong></p>
+<p>​    &nbsp;&nbsp;&nbsp;&nbsp;<strong>OOP 允许根据问题来描述问题，而不是根据运行解决方案的计算机来描述问题。</strong>但它仍然与计算机有联系：<strong>每个对象看起来都有点像一台微型计算机（它们具有状态，还具有操作，用户可以要求对象执行这些操作。）</strong><a id="more"></a></p>
 <h3 id="1-1面向对象语言的五个基本特征"><a href="#1-1面向对象语言的五个基本特征" class="headerlink" title="1.1面向对象语言的五个基本特征"></a>1.1面向对象语言的五个基本特征</h3><p>​    &nbsp;&nbsp;&nbsp;&nbsp;1） <strong>万物皆对象。</strong> 将对象是为奇特的变量，它可以存储数据，除此之外，你还可以要求它在自身上执行操作。理论上讲，你可以抽取带求解问题的任何概念化构件（狗，建筑物，服务等）,将其表示为程序中的对象。</p>
 <p>​    &nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;） <strong>程序是对象的集合，它们通过发送消息来告知彼此所要做的。</strong>要想请求一个对象，就必须对该对象发送一条消息。更具体的说，可以把消息想象为对某个特定对象的方法的调用请求。</p>
 <p>​    &nbsp;&nbsp;&nbsp;&nbsp;3） <strong>每个对象都拥有其类型。</strong>按照通常的说法，“每个对象都是某个类（class）的一个实例”，这里 “类” 就是 “类型” 的同义词，每个类最重要的区别在于其他类的特征就是 “可以发送什么样的消息给它”。</p>
@@ -353,7 +354,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Whyer的博客
+    		&copy; 2018 Whyer
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

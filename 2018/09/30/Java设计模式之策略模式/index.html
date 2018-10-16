@@ -9,19 +9,20 @@
   <title>Java设计模式之策略模式 | Whyer的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="​     ​    策略模式，它其实是定义了一系列的算法簇，然后分别封装起来，让它们之间可以互相替换，此设计模式的变化独立于使用算法的客户。 ​    举一个例子：现在 Animal（动物类）,它有 看，呼吸，叫等的动作。现在让以面向对象的思想编写 Dolphin(海豚)，GoldFish（金鱼）类的实现。我们可能会想到这样： 12345678910/** * 父类采用抽象类，把已经确定实现的方">
+<meta name="keywords" content="开发者,程序员,编程,代码,java,IT网站">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java设计模式之策略模式">
 <meta property="og:url" content="http://yoursite.com/2018/09/30/Java设计模式之策略模式/index.html">
 <meta property="og:site_name" content="Whyer的博客">
 <meta property="og:description" content="​     ​    策略模式，它其实是定义了一系列的算法簇，然后分别封装起来，让它们之间可以互相替换，此设计模式的变化独立于使用算法的客户。 ​    举一个例子：现在 Animal（动物类）,它有 看，呼吸，叫等的动作。现在让以面向对象的思想编写 Dolphin(海豚)，GoldFish（金鱼）类的实现。我们可能会想到这样： 12345678910/** * 父类采用抽象类，把已经确定实现的方">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/09/30/Java设计模式之策略模式/run.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/09/30/Java设计模式之策略模式/strategy.png">
-<meta property="og:updated_time" content="2018-09-30T08:43:35.593Z">
+<meta property="og:image" content="http://yoursite.com/Java设计模式之策略模式/run.jpg">
+<meta property="og:image" content="http://yoursite.com/Java设计模式之策略模式/strategy.png">
+<meta property="og:updated_time" content="2018-10-16T13:45:16.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java设计模式之策略模式">
 <meta name="twitter:description" content="​     ​    策略模式，它其实是定义了一系列的算法簇，然后分别封装起来，让它们之间可以互相替换，此设计模式的变化独立于使用算法的客户。 ​    举一个例子：现在 Animal（动物类）,它有 看，呼吸，叫等的动作。现在让以面向对象的思想编写 Dolphin(海豚)，GoldFish（金鱼）类的实现。我们可能会想到这样： 12345678910/** * 父类采用抽象类，把已经确定实现的方">
-<meta name="twitter:image" content="http://yoursite.com/2018/09/30/Java设计模式之策略模式/run.jpg">
+<meta name="twitter:image" content="http://yoursite.com/Java设计模式之策略模式/run.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Whyer的博客" type="application/atom+xml">
   
@@ -53,7 +54,7 @@
 			<img src="/blogImages/iconq.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/"></a></h1>
+		  <h1 class="header-author"><a href="/">Whyer</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">我干了什么 究竟拿了时间换了什么</p>
@@ -113,7 +114,7 @@
 				<img src="/blogImages/iconq.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author"></h1>
+			  <h1 class="header-author js-header-author">Whyer</h1>
 			</hgroup>
 			
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>我干了什么 究竟拿了时间换了什么<i class="icon icon-quo-right"></i></p>
@@ -188,7 +189,7 @@
 <p>​    那么 Animal 的子类将这样实现：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dolphin</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">breathe</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Dolphin ... breathe"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Dolphin... call"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoldFish</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">breathe</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"GoldFish... breathe"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"GoldFish... call"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    嗯~~~，这样看起来很完美，我才用了继承，将 look() 方法（不变的方法）从父类中继承下来，这样我就不用在写重复的代码啦！！！</p>
-<p>​    但是，真的是这样吗？</p>
+<p>​    但是，真的是这样吗？<a id="more"></a></p>
 <p>​    现在是两个实现类，这样写还看不出来什么问题。假如说，有一天，老板说给我把动物园里的动物类都实现一遍？这时我们应该怎么办？</p>
 <p>​    如果是上面的需求的话，会发现，我们会写大量的重复性代码（把 相同的 breathe(), call() 一遍又一遍的实现）。这时我们可以 <strong>定义两个接口 BreatheBehavior,CallBehavior ，将它们作为 Animal 的属性添加进来，这样我们就可以委托这两个接口的实现类来完成 breathe 和 call 操作。而我们不需要知道它的具体实现。</strong>代码如下：</p>
 <ol>
@@ -208,13 +209,13 @@
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> wanghaoyu</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018/9/29 - 19:07</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Animal goldFish = <span class="keyword">new</span> GoldFish();</span><br><span class="line">        goldFish.breathe();</span><br><span class="line">        goldFish.call();</span><br><span class="line">        <span class="comment">//程序中临时指定，金鱼的叫声。</span></span><br><span class="line">        goldFish.setCallBehavior(<span class="keyword">new</span> SqueakCallBehavior());</span><br><span class="line">        goldFish.call();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    执行结果：</p>
-<p><img src="/2018/09/30/Java设计模式之策略模式/run.jpg" alt=""></p>
+<p><img src="/Java设计模式之策略模式/run.jpg" alt=""></p>
 <p>​    那么这样设计有什么好处呢？ 我们来看，呼吸和叫的行为可以被其他对象复用，因为我们的动物，与那些叫和呼吸的行为其实本来没有太大的关系。而我们新增加或者减少那些行为类，其实那些对象也感知不到。我们要将变化的部分取出来并封装起来，好让其他部分不受影响。</p>
 <p>​    设计模式有这样一个设计原则：<strong>找出应用中可能变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起。</strong></p>
 <p>​    我们如何将他分开来呢？我们可以利用接口来代表每个行为，比如 BreatheBehavior 与 CallBehavior ，而行为的每个实现都必须实现这些接口之一。所以这些动物不需要理会动作是怎么实现的，我只需要委托你这个接口在帮我实现就好。<strong>针对接口编程，而不是这对实现编程。</strong>在我们刚开始使用继承时，就是面向实现编程的，这样会导致代码强耦合，不利于扩展和维护。</p>
 <p>​    <strong>“有一个” 可能比 “是一个” 更好</strong> ，使用组合建立系统具有很大的弹性，不仅可以将算法封装成类，更可以在<strong>运行时动态地改变行为</strong>，只要组合的行为对象符合正确的接口标准即可</p>
 <p>​    以下就是策略模式的结构：</p>
-<p><img src="/2018/09/30/Java设计模式之策略模式/strategy.png" alt=""></p>
+<p><img src="/Java设计模式之策略模式/strategy.png" alt=""></p>
 <p>​    <strong>构成</strong></p>
 <ul>
 <li><p><strong>Strategy</strong></p>
@@ -400,7 +401,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Whyer的博客
+    		&copy; 2018 Whyer
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
