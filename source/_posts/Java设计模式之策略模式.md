@@ -163,6 +163,20 @@ public class Animal {
         this.callBehavior = callBehavior;
     }
 }
+
+
+//================================================================
+/**
+ * @author wanghaoyu
+ * @date 2018/9/29 - 19:04
+ * 金鱼   （动物的实际实现类）
+ */
+public class GoldFish extends Animal {
+    public GoldFish(){
+        setBreatheBehavior(new LamellaBreatheBehavior());
+        setCallBehavior(new NoCallBehavior());
+    }
+}
 ```
 
 1. 下面就来看看我们的劳动成果吧！
