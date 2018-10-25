@@ -6,16 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | Whyer的博客</title>
+  <title>Java设计模式之工厂方法模式 | Whyer的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="开发者,程序员,编程,代码,java,IT网站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Whyer的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+  <meta name="description" content="工厂方法的代码实现： 定义个一个 pizza 的基类（抽象类）  123456789101112131415161718192021222324252627282930313233343536373839/** * 工厂方法模式，定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到了子类 * * 但是这里的 “决定” 并不是指模式允许子类本身在运行时做决定，而是指">
+<meta name="keywords" content="开发者,程序员,编程,代码,java,IT网站">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java设计模式之工厂方法模式">
+<meta property="og:url" content="http://yoursite.com/2018/10/23/Java设计模式之工厂方法模式/index.html">
 <meta property="og:site_name" content="Whyer的博客">
+<meta property="og:description" content="工厂方法的代码实现： 定义个一个 pizza 的基类（抽象类）  123456789101112131415161718192021222324252627282930313233343536373839/** * 工厂方法模式，定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到了子类 * * 但是这里的 “决定” 并不是指模式允许子类本身在运行时做决定，而是指">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/10/23/Java设计模式之工厂方法模式/runResult.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/23/Java设计模式之工厂方法模式/factory_method.png">
+<meta property="og:updated_time" content="2018-10-25T09:04:54.927Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Whyer的博客">
+<meta name="twitter:title" content="Java设计模式之工厂方法模式">
+<meta name="twitter:description" content="工厂方法的代码实现： 定义个一个 pizza 的基类（抽象类）  123456789101112131415161718192021222324252627282930313233343536373839/** * 工厂方法模式，定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到了子类 * * 但是这里的 “决定” 并不是指模式允许子类本身在运行时做决定，而是指">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/23/Java设计模式之工厂方法模式/runResult.png">
   
     <link rel="alternative" href="/atom.xml" title="Whyer的博客" type="application/atom+xml">
   
@@ -155,103 +162,239 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Java设计模式之工厂方法模式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Java设计模式之工厂方法模式
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/23/Java设计模式之工厂方法模式/" class="archive-article-date">
+
+        
+        <a href="/2018/10/23/Java设计模式之工厂方法模式/" class="archive-article-date">
   	<time datetime="2018-10-23T06:11:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-23</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/23/Java设计模式之工厂方法模式/">Java设计模式之工厂方法模式</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="工厂方法的代码实现："><a href="#工厂方法的代码实现：" class="headerlink" title="工厂方法的代码实现："></a>工厂方法的代码实现：</h2><ol>
+<li>定义个一个 pizza 的基类（抽象类）</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 工厂方法模式，定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到了子类</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 但是这里的 “决定” 并不是指模式允许子类本身在运行时做决定，而是指在编写创建者类时，</span></span><br><span class="line"><span class="comment"> * 不需要知道实际创建的产品是哪一个。选择了使用哪个子类，自然就决定了实际创建的产品是什么。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> String name;</span><br><span class="line">    <span class="keyword">protected</span> String dough;</span><br><span class="line">    <span class="keyword">protected</span> String sauce;</span><br><span class="line">    <span class="keyword">protected</span> List&lt;String&gt; topping = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Preparing..."</span> + name);</span><br><span class="line">        System.out.println(<span class="string">"Tossing dough"</span>);</span><br><span class="line">        System.out.println(<span class="string">"Adding sauce"</span>);</span><br><span class="line">        System.out.println(<span class="string">"Adding toppings: "</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; topping.size(); i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"  "</span> + topping.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bake</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Bake for 25 minutes at 350"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Cutting the pizza into diagonal slices"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">box</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Place pizza in offical PizzaStore box"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<ol start="2">
+<li>一些 pizza 的实现类</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> wanghaoyu</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018/10/22 - 20:43</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NYStyleClamPizze</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NYStyleClamPizze</span><span class="params">()</span></span>&#123;</span><br><span class="line">        name = <span class="string">"NYStyleClamPizze"</span>;</span><br><span class="line">        dough = <span class="string">"NYStyleClamPizze...Dough"</span>;</span><br><span class="line">        sauce = <span class="string">"NYStyleClamPizze...Sauce"</span>;</span><br><span class="line"></span><br><span class="line">        topping.add(<span class="string">"NYStyleClamPizze....."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//======================================================</span></span><br><span class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NYStyleCheesePizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NYStyleCheesePizza</span><span class="params">()</span></span>&#123;</span><br><span class="line">        name = <span class="string">"NYStyleCheesePizza"</span>;</span><br><span class="line">        dough = <span class="string">"NYStyleCheesePizza...Dough"</span>;</span><br><span class="line">        sauce = <span class="string">"NYStyleCheesePizza...Sauce"</span>;</span><br><span class="line"></span><br><span class="line">        topping.add(<span class="string">"NYStyleCheesePizza....."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//=================================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChicagoStyleClamPizze</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ChicagoStyleClamPizze</span><span class="params">()</span></span>&#123;</span><br><span class="line">        name = <span class="string">"ChicagoStyleClamPizze"</span>;</span><br><span class="line">        dough = <span class="string">"ChicagoStyleClamPizze...Dough"</span>;</span><br><span class="line">        sauce = <span class="string">"ChicagoStyleClamPizze...Sauce"</span>;</span><br><span class="line"></span><br><span class="line">        topping.add(<span class="string">"ChicagoStyleClamPizze....."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//=================================================================</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChicagoStyleCheesePizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ChicagoStyleCheesePizza</span><span class="params">()</span></span>&#123;</span><br><span class="line">        name = <span class="string">"ChicagoStyleCheesePizza"</span>;</span><br><span class="line">        dough = <span class="string">"ChicagoStyleCheesePizza...Dough"</span>;</span><br><span class="line">        sauce = <span class="string">"ChicagoStyleCheesePizza...Sauce"</span>;</span><br><span class="line"></span><br><span class="line">        topping.add(<span class="string">"ChicagoStyleCheesePizza....."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>定义一个创建 pizza 工厂的接口</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * PizzaStroe 是抽象的</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">PizzaStore</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 加工 pizza</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Pizza <span class="title">orderPizze</span><span class="params">(String type)</span></span>&#123;</span><br><span class="line">        Pizza pizza;</span><br><span class="line">        <span class="comment">//creeatPizza() 方法从工厂对象中移回 pizzaStore</span></span><br><span class="line">        pizza = creatPizza(type);</span><br><span class="line"></span><br><span class="line">        pizza.prepare();</span><br><span class="line">        pizza.bake();</span><br><span class="line">        pizza.cut();</span><br><span class="line">        pizza.box();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> pizza;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 把工厂对象移到这个方法中，</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> Pizza <span class="title">creatPizza</span><span class="params">(String type)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>继承 PizzaStore 并实现 creatPizza() 方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChicagoStylePizzaStore</span> <span class="keyword">extends</span> <span class="title">PizzaStore</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Pizza <span class="title">creatPizza</span><span class="params">(String type)</span> </span>&#123;</span><br><span class="line">        Pizza pizza = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (type.equals(<span class="string">"cheese"</span>))&#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> ChicagoStyleCheesePizza();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (type.equals(<span class="string">"clam"</span>))&#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> ChicagoStyleClamPizze();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pizza;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//=========================================================</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NYStylePizzaStore</span> <span class="keyword">extends</span> <span class="title">PizzaStore</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Pizza <span class="title">creatPizza</span><span class="params">(String type)</span> </span>&#123;</span><br><span class="line">        Pizza pizza = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (type.equals(<span class="string">"cheese"</span>))&#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> NYStyleCheesePizza();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (type.equals(<span class="string">"clam"</span>))&#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> NYStyleClamPizze();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pizza;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>看一看，我们的成果</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        PizzaStore nyStore = <span class="keyword">new</span> NYStylePizzaStore();</span><br><span class="line">        PizzaStore chicagoStore = <span class="keyword">new</span> ChicagoStylePizzaStore();</span><br><span class="line"></span><br><span class="line">        Pizza pizza = nyStore.orderPizze(<span class="string">"cheese"</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(pizza.getName());</span><br><span class="line">        System.out.println(<span class="string">"*******************************************"</span>);</span><br><span class="line"></span><br><span class="line">        pizza = chicagoStore.orderPizze(<span class="string">"cheese"</span>);</span><br><span class="line">        System.out.println(pizza.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是我们的运行结果：</p>
+<p><img src="/2018/10/23/Java设计模式之工厂方法模式/runResult.png" alt=""></p>
+<h2 id="适用性："><a href="#适用性：" class="headerlink" title="适用性："></a>适用性：</h2><p>在下列情况下可以使用 Factory Method 模式：</p>
+<ul>
+<li>当一个类不知道它所必须创建的对象的类的时候。</li>
+<li>当一个类希望由它的子类来指定它所创建的对象的时候。</li>
+<li>当类将创建对象的职责委托给多个帮助子类中的某一个，并且你希望将哪一个帮助子类是代理者这一信息局部化的时候。</li>
+</ul>
+<h2 id="结构："><a href="#结构：" class="headerlink" title="结构："></a>结构：</h2><p><img src="/2018/10/23/Java设计模式之工厂方法模式/factory_method.png" alt="结构图"></p>
+<h2 id="参与者"><a href="#参与者" class="headerlink" title="参与者"></a>参与者</h2><ul>
+<li><p>Product(Pizza)</p>
+<p>定义工厂方法所创建的对象的接口。</p>
+</li>
+</ul>
+<ul>
+<li><p>ConcreteProduct(NYStyleClamPizze)</p>
+<p>实现 Product 接口。</p>
+</li>
+<li><p>Creator(PizzaStore)</p>
+<ul>
+<li>声明工厂方法，该方法返回一个 Product 类型的对象。Creator 也可以定义一个工厂方法的缺省实现，它返回一个缺省的 ConcreteProduct 对象。</li>
+<li>可以调用工厂方法以创建一个 Product 对象。</li>
+</ul>
+</li>
+<li><p>ConcreteCreator(NYStylePizzaStore)</p>
+<p>重新定义工厂方法以返回一个 ConcreteProduct 实例。</p>
+</li>
+</ul>
+<h2 id="效果："><a href="#效果：" class="headerlink" title="效果："></a>效果：</h2><ul>
+<li>工厂方法不再将与特定应用有关的类绑定到你的代码中。代码仅处理 Product 接口；因此，它可以与用户定义的任何 ConcreteProduct 类一起使用。</li>
+<li>工厂方法的一个潜在缺点在于客户可能仅仅为了创建一个特定的 ConcreteProduct 对象，就不得不创建 Creator 的子类。当 Creator 子类不必须时，客户现在必然要处理类演化的其他方面；但是当客户无论如何必须创建 Creator 的子类时，创建子类也是可行的。</li>
+<li><strong>为子类提供挂钩（hook）</strong>   用工厂方法在一个类的内部创建对象通常比直接创建对象更灵活。 Factory Method 给子类一个挂钩以提供对象的扩展版本。</li>
+<li><strong>连接平行的类层次</strong>   迄今为止，在我们所考虑的例子中，工厂方法并不往往只是被 Creator 调用，客户可以找到一些有用的工厂方法，尤其在平行类层次的情况下。</li>
+</ul>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>​    在工厂方法中，我们认识到，以后在编码过程中，<strong>可以将创建对象的代码封装起来</strong>。<strong>实例化具体类的代码，很可能在以后经常需要改变，我们可以用 “工厂” 的技巧，将实例化的行为封装起来。</strong></p>
+<p>​    那么这种 “工厂” 究竟能带来什么好处呢？</p>
+<p>​    将创建对象的代码集中在一个对象或方法中，可以避免代码的重复，并且更方便以后的维护。这也意味着客户在实例化对象时，只会依赖于接口，而不是具体类。我们在学习中发现，这可以帮助我针对接口编程，而不是针对实现编程。这让代码更具有弹性，可以应对未来的扩展。</p>
+<p>​    但是，我们常常会有这样一个疑问。</p>
+<p>​    <strong>我知道封装起创建对象的代码，就可以对抽象编程，将客户代码和真实的实现解耦。然而在我的工厂代码中，不可避免地，任然必须使用具体类来实例化真正的对象。这不是 “蒙着眼睛骗自己” 吗？</strong></p>
+<p>​    <strong>对象的创建是现实的，如果不创建任何对象，就无法创建任何 java 程序。然而， 利用这个显示的知识，可以将这些创建对象的代码用栅栏围起来，就像你把所有的羊毛堆在眼前一样，一旦围起来后，就可以保护这些创建对象的代码。如果让创建对象的代码到处乱跑，那就无法收集到 “羊毛”，你说是吧？</strong></p>
+<p><strong>设计原则： 要依赖于抽象，不要依赖于集体类。</strong></p>
+<p>具体该怎么做呢？</p>
+<ul>
+<li><p>变量不可以持有具体类的对象。（如果使用 new ，就是持有具体类的引用。你可以改用工厂来避开这样的做法）</p>
+</li>
+<li><p>不要让类派生自具体类。（如果派生自具体类，你就会依赖具体类。请派生自一个抽象&lt;接口或抽象类&gt;）</p>
+</li>
+<li><p>不要覆盖基类中已实现的方法。（如果覆盖基类已实现的方法，那么你的基类就不是一个真正适合被继承的抽象。积累中已实现的方法，应该有所有的子类共享）</p>
+<p>当然正如我们许多的原则一样，应该尽量达到这个原则，而不是随时都要遵守这个原则。例如，我们平时会不假思索的实例化字符串对象，这就违反了这个原则，但是为什么可以这么做呢？因为字符串不可能改变。另一方面，如果有类可能改变，你可以采用一些好的技巧来封装改变（例如工厂方法）。</p>
+</li>
+</ul>
+<h2 id="工厂方法设计模式中，我们会产生的疑问："><a href="#工厂方法设计模式中，我们会产生的疑问：" class="headerlink" title="工厂方法设计模式中，我们会产生的疑问："></a>工厂方法设计模式中，我们会产生的疑问：</h2><h3 id="1-当只有一个-ConcreteCreator-的时候，工厂方法模式有什么优点？"><a href="#1-当只有一个-ConcreteCreator-的时候，工厂方法模式有什么优点？" class="headerlink" title="1. 当只有一个 ConcreteCreator 的时候，工厂方法模式有什么优点？"></a>1. 当只有一个 ConcreteCreator 的时候，工厂方法模式有什么优点？</h3><p>​    尽管只有一个具体创建者，工厂方法模式依然很有用，因为它帮助我们将产品的 “实现” 从“使用” 中解耦出来。如果增加产品或改变产品的实现，Creator 并不会受影响<strong>（因为 Creator 与任何 ConcreteProduct 之间都不是紧耦合）。</strong></p>
+<h3 id="2-如果说纽约和芝加哥的商店是利用简单工厂创建的，这样的说法是否正确？看起来倒是很像。"><a href="#2-如果说纽约和芝加哥的商店是利用简单工厂创建的，这样的说法是否正确？看起来倒是很像。" class="headerlink" title="2. 如果说纽约和芝加哥的商店是利用简单工厂创建的，这样的说法是否正确？看起来倒是很像。"></a>2. 如果说纽约和芝加哥的商店是利用简单工厂创建的，这样的说法是否正确？看起来倒是很像。</h3><p>​    它们很类似，但用法不同。虽每个具体商店的实现看起来都很像是 SimplePizza-Factory， 但是别忘了，<strong>工厂方法的具体商店是扩展自一个类（PizzaStore），此类有一个抽象方法 createPizza()。 由每个商店自行负责 createPizza() 方法的行为。在简单工厂中，工厂是另一个由 PizzaStore 使用的对象。</strong></p>
+<h2 id="3-工厂方法和创建者是否总是抽象的？"><a href="#3-工厂方法和创建者是否总是抽象的？" class="headerlink" title="3. 工厂方法和创建者是否总是抽象的？"></a>3. 工厂方法和创建者是否总是抽象的？</h2><p>​    不一定，可以定义一个默认的工厂方法来产生某些具体的产品，这么一来，即使创建者没有任何子类，依然可以创建产品。</p>
+<h2 id="4-每个商店基于传入的类型制造出不同种类的-pizza-。是否所有的具体创建者都必须如此？能不能只创建一种-pizza？"><a href="#4-每个商店基于传入的类型制造出不同种类的-pizza-。是否所有的具体创建者都必须如此？能不能只创建一种-pizza？" class="headerlink" title="4. 每个商店基于传入的类型制造出不同种类的 pizza 。是否所有的具体创建者都必须如此？能不能只创建一种 pizza？"></a>4. 每个商店基于传入的类型制造出不同种类的 pizza 。是否所有的具体创建者都必须如此？能不能只创建一种 pizza？</h2><p>​    这里采用的方式是 “参数化工厂方法” 。他可以根据传入的参数创建不同的对象。然而，工厂经常只产生一种对象，不需要参数化。模式的这两种形式都是有效的。</p>
+<h2 id="5-利用字符串传入参数化类型，似乎有点危险，万一把-clam-蛤蜊-英文拼错，成了-calm-（平静），要求供应-calmPizza-怎么办？"><a href="#5-利用字符串传入参数化类型，似乎有点危险，万一把-clam-蛤蜊-英文拼错，成了-calm-（平静），要求供应-calmPizza-怎么办？" class="headerlink" title="5. 利用字符串传入参数化类型，似乎有点危险，万一把 clam(蛤蜊) 英文拼错，成了 calm （平静），要求供应 calmPizza 怎么办？"></a>5. 利用字符串传入参数化类型，似乎有点危险，万一把 clam(蛤蜊) 英文拼错，成了 calm （平静），要求供应 calmPizza 怎么办？</h2><p>​    说的很对，这样的情形会造成 运行时异常。<strong>那么我们可以在编译器就将参数上的错误挑出来，就可以避开这个问题了。</strong> </p>
+<ul>
+<li>可以创建代表参数类型的对象。</li>
+<li>使用枚举类型 enum。</li>
+</ul>
+<h2 id="6-对于简单工厂和工厂方法之间的差异，我依然感到困惑。它们看起来很类似，差别在于，在工厂方法中，返回-pizza-的类是子类。能解释一下吗？"><a href="#6-对于简单工厂和工厂方法之间的差异，我依然感到困惑。它们看起来很类似，差别在于，在工厂方法中，返回-pizza-的类是子类。能解释一下吗？" class="headerlink" title="6. 对于简单工厂和工厂方法之间的差异，我依然感到困惑。它们看起来很类似，差别在于，在工厂方法中，返回 pizza 的类是子类。能解释一下吗？"></a>6. 对于简单工厂和工厂方法之间的差异，我依然感到困惑。它们看起来很类似，差别在于，在工厂方法中，返回 pizza 的类是子类。能解释一下吗？</h2><p>​    子类的确看起来很像简单工厂。简单工厂把全部事情在一个地方都处理完了，然而工厂方法却是创建一个框架，让子类决定要如何实现。</p>
+<p>​    比方说在工厂方法中，orderPizza() 方法提供了一般的框架，以便创建 pizza，orderPizza() 方法依赖工厂方法创建具体类，并创建出实际的 pizza 。可通过继承 pizzaStore 类，决定实际创造出的 pizza 是什么。</p>
+<p>​    简单工厂的做法是将对象的创建封装起来，简单工厂不具备工厂方法的弹性，因为简单工厂不能变更正在创建的产品。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/10/23/Java设计模式之工厂方法模式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/15/Java编程思想-第一章-对象导论/" class="archive-article-date">
-  	<time datetime="2018-10-15T00:58:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/15/Java编程思想-第一章-对象导论/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java编程思想 第一章 对象导论</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/15/Java编程思想-第一章-对象导论/">Java编程思想 第一章 对象导论</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/30/Java设计模式之策略模式/" class="archive-article-date">
-  	<time datetime="2018-09-30T03:21:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/30/Java设计模式之策略模式/">Java设计模式之策略模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -274,8 +417,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
